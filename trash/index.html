@@ -1,0 +1,79 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Trash/Recycling</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+
+    <style>
+      #main {
+        height: 100%;
+        width: 100%;
+      }
+      #icons {
+        text-align: center;
+        vertical-align: middle;
+      }
+      #trash_icon {
+        color: blue;
+      }
+      #plus_icon {
+        color: red;
+        vertical-align: 35%;
+      }
+      #recycle_icon {
+        color: green;
+        vertical-align: -5%;
+      }
+      #recycle_week_icons {
+        display: none;
+      }
+    </style>
+
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+
+    <script>
+      $(document).ready(function() {
+        var one_week = 604800 * 1000;
+
+        // start date = thursday dec 31, 2015 00:00.
+        // this marks the beginning of a trash+recycling week.
+        var start_date = new Date(1451538000000);
+        var today = new Date();
+
+        // note: no fancy "is it after sunday/monday/whenever" logic here.
+        // as soon as we hit thursday, we're in a new week.
+        var diff = today.getTime() - start_date.getTime();
+        var weeks = Math.floor(diff / one_week);
+
+        // since this was initialized based on the start of a recycle week,
+        // if the number of weeks is even then we put out both.
+        // otherwise we obviously do just trash.
+        if(weeks % 2 == 0) $('#recycle_week_icons').show();
+      });
+    </script>
+  </head>
+
+  <body>
+    <!-- yes, i'm using a table for layout here. the css solutions for
+      simply centering a lone div vertically on the page are so much more
+      complicated than this and frankly not worth the time. -->
+    <table id="main">
+      <tr>
+        <td>
+
+          <div id="icons">
+            <i class="fa fa-trash fa-5x" id="trash_icon"></i>
+            <span id="recycle_week_icons">
+              <i class="fa fa-plus fa-2x" id="plus_icon"></i>
+              <i class="fa fa-recycle fa-5x" id="recycle_icon"></i>
+            </span>
+          </div>
+
+        </td>
+      </tr>
+    </table>
+
+  </body>
+</html>

@@ -7,11 +7,20 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 
     <style>
-      #main {
+      #container {
         height: 100%;
         width: 100%;
+        display: grid;
+        grid-gap: 10px;
+        grid-template-rows: 1fr 1fr 1fr;
+        grid-template-columns: 100%;
+      }
+      .row {
+        grid-column: 100%;
       }
       #icons {
+        margin-top: auto;
+        margin-bottom: auto;
         text-align: center;
         vertical-align: middle;
       }
@@ -56,24 +65,17 @@
   </head>
 
   <body>
-    <!-- yes, i'm using a table for layout here. the css solutions for
-      simply centering a lone div vertically on the page are so much more
-      complicated than this and frankly not worth the time. -->
-    <table id="main">
-      <tr>
-        <td>
-
-          <div id="icons">
-            <i class="fa fa-trash fa-5x" id="trash_icon"></i>
-            <span id="recycle_week_icons">
-              <i class="fa fa-plus fa-2x" id="plus_icon"></i>
-              <i class="fa fa-recycle fa-5x" id="recycle_icon"></i>
-            </span>
-          </div>
-
-        </td>
-      </tr>
-    </table>
+    <div id="container">
+      <div class="row"></div>
+      <div class="row" id="icons">
+        <i class="fa fa-trash fa-5x" id="trash_icon"></i>
+        <span id="recycle_week_icons">
+          <i class="fa fa-plus fa-2x" id="plus_icon"></i>
+          <i class="fa fa-recycle fa-5x" id="recycle_icon"></i>
+        </span>
+      </div>
+      <div class="row"></div>
+    </div>
 
   </body>
 </html>
